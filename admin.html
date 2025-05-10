@@ -1,0 +1,416 @@
+<html lang="pt-BR" class="scroll-smooth">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   Admin Panel - FideProta
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&amp;display=swap" rel="stylesheet"/>
+  <style>
+   body {
+      font-family: "Poppins", sans-serif;
+    }
+   .hidden {
+     display: none;
+   }
+  </style>
+ </head>
+ <body class="bg-gray-900 text-gray-100 min-h-screen flex flex-col">
+  <header class="bg-gradient-to-r from-indigo-700 via-purple-700 to-pink-700 shadow-lg">
+   <div class="container mx-auto px-6 py-6 flex items-center justify-between">
+    <h1 class="text-3xl font-semibold select-none">
+     Painel Admin - FideProta
+    </h1>
+    <button id="logoutBtn" class="bg-pink-600 hover:bg-pink-700 transition-colors rounded-full px-4 py-2 font-semibold text-white hidden">
+     Sair
+    </button>
+   </div>
+  </header>
+  <main class="flex-grow container mx-auto px-6 py-12">
+   <!-- Login Section -->
+   <section id="loginSection" class="max-w-md mx-auto bg-gray-800 rounded-3xl shadow-lg p-10 flex flex-col items-center space-y-6">
+    <i class="fas fa-user-shield fa-6x text-pink-500">
+    </i>
+    <h2 class="text-3xl font-extrabold text-pink-400">
+     Login do Administrador
+    </h2>
+    <input aria-label="Campo para senha do administrador" class="w-full rounded-lg px-4 py-3 text-gray-900 font-semibold text-lg" id="passwordInput" placeholder="Digite a senha" type="password"/>
+    <button class="w-full bg-pink-600 hover:bg-pink-700 transition-colors rounded-full py-3 font-semibold text-white text-lg" id="loginBtn" type="button">
+     Entrar
+    </button>
+    <p class="text-red-500 font-semibold hidden" id="errorMsg">
+     Senha incorreta. Tente novamente.
+    </p>
+   </section>
+   <!-- Admin Panel Section -->
+   <section class="hidden max-w-7xl mx-auto space-y-10" id="adminPanel">
+    <h2 class="text-4xl font-extrabold text-center text-pink-400 mb-8">
+     Painel de Controle - Personalize seu Site
+    </h2>
+    <!-- Cores -->
+    <div class="bg-gray-800 rounded-3xl shadow-lg p-8">
+     <h3 class="text-2xl font-bold mb-6 text-pink-400">
+      Configuração de Cores
+     </h3>
+     <form id="colorsForm" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div>
+       <label class="block mb-2 font-semibold" for="colorPrimary">
+        Cor Primária (ex: botão, header)
+       </label>
+       <input class="w-full h-10 rounded-lg border border-gray-600 px-3 py-2 text-gray-900 font-semibold" id="colorPrimary" type="color" value="#d946ef"/>
+      </div>
+      <div>
+       <label class="block mb-2 font-semibold" for="colorSecondary">
+        Cor Secundária (ex: botões secundários)
+       </label>
+       <input class="w-full h-10 rounded-lg border border-gray-600 px-3 py-2 text-gray-900 font-semibold" id="colorSecondary" type="color" value="#6366f1"/>
+      </div>
+      <div>
+       <label class="block mb-2 font-semibold" for="colorBackground">
+        Cor de Fundo Principal
+       </label>
+       <input class="w-full h-10 rounded-lg border border-gray-600 px-3 py-2 text-gray-900 font-semibold" id="colorBackground" type="color" value="#1f2937"/>
+      </div>
+     </form>
+     <button class="mt-6 bg-pink-600 hover:bg-pink-700 transition-colors rounded-full px-6 py-3 font-semibold text-white" id="applyColorsBtn" type="button">
+      Aplicar Cores
+     </button>
+    </div>
+    <!-- Botões -->
+    <div class="bg-gray-800 rounded-3xl shadow-lg p-8">
+     <h3 class="text-2xl font-bold mb-6 text-pink-400">
+      Configuração dos Botões
+     </h3>
+     <form id="buttonsForm" class="space-y-6 max-w-3xl mx-auto">
+      <div>
+       <label class="block mb-2 font-semibold" for="btnPrimaryText">
+        Texto do Botão Primário
+       </label>
+       <input class="w-full rounded-lg border border-gray-600 px-3 py-2 text-gray-900 font-semibold" id="btnPrimaryText" type="text" value="Otimização PC"/>
+      </div>
+      <div>
+       <label class="block mb-2 font-semibold" for="btnPrimaryLink">
+        Link do Botão Primário
+       </label>
+       <input class="w-full rounded-lg border border-gray-600 px-3 py-2 text-gray-900 font-semibold" id="btnPrimaryLink" type="url" value="optimization.html"/>
+      </div>
+      <div>
+       <label class="block mb-2 font-semibold" for="btnSecondaryText">
+        Texto do Botão Secundário
+       </label>
+       <input class="w-full rounded-lg border border-gray-600 px-3 py-2 text-gray-900 font-semibold" id="btnSecondaryText" type="text" value="Papéis de Parede"/>
+      </div>
+      <div>
+       <label class="block mb-2 font-semibold" for="btnSecondaryLink">
+        Link do Botão Secundário
+       </label>
+       <input class="w-full rounded-lg border border-gray-600 px-3 py-2 text-gray-900 font-semibold" id="btnSecondaryLink" type="url" value="wallpapers.html"/>
+      </div>
+     </form>
+     <button class="mt-6 bg-pink-600 hover:bg-pink-700 transition-colors rounded-full px-6 py-3 font-semibold text-white" id="applyButtonsBtn" type="button">
+      Aplicar Botões
+     </button>
+    </div>
+    <!-- Categorias -->
+    <div class="bg-gray-800 rounded-3xl shadow-lg p-8">
+     <h3 class="text-2xl font-bold mb-6 text-pink-400">
+      Gerenciar Categorias do Site
+     </h3>
+     <form id="categoriesForm" class="space-y-4 max-w-4xl mx-auto">
+      <div id="categoriesList" class="space-y-3 max-h-64 overflow-y-auto border border-gray-700 rounded-lg p-4 bg-gray-900">
+       <!-- Categorias serão inseridas aqui -->
+      </div>
+      <div class="flex space-x-4">
+       <input aria-label="Novo nome da categoria" class="flex-grow rounded-lg border border-gray-600 px-3 py-2 text-gray-900 font-semibold" id="newCategoryInput" placeholder="Nova categoria" type="text"/>
+       <button class="bg-indigo-600 hover:bg-indigo-700 transition-colors rounded-full px-6 py-2 font-semibold text-white" id="addCategoryBtn" type="button">
+        Adicionar
+       </button>
+      </div>
+     </form>
+    </div>
+    <!-- Design -->
+    <div class="bg-gray-800 rounded-3xl shadow-lg p-8">
+     <h3 class="text-2xl font-bold mb-6 text-pink-400">
+      Configurações de Design
+     </h3>
+     <form id="designForm" class="space-y-6 max-w-4xl mx-auto">
+      <div>
+       <label class="block mb-2 font-semibold" for="fontSelect">
+        Fonte do Site
+       </label>
+       <select class="w-full rounded-lg border border-gray-600 px-3 py-2 text-gray-900 font-semibold" id="fontSelect">
+        <option value="'Poppins', sans-serif" selected>
+         Poppins (Padrão)
+        </option>
+        <option value="'Roboto', sans-serif">
+         Roboto
+        </option>
+        <option value="'Open Sans', sans-serif">
+         Open Sans
+        </option>
+        <option value="'Lato', sans-serif">
+         Lato
+        </option>
+        <option value="'Montserrat', sans-serif">
+         Montserrat
+        </option>
+       </select>
+      </div>
+      <div>
+       <label class="block mb-2 font-semibold" for="borderRadius">
+        Raio das Bordas (px)
+       </label>
+       <input class="w-full rounded-lg border border-gray-600 px-3 py-2 text-gray-900 font-semibold" id="borderRadius" max="50" min="0" type="number" value="24"/>
+      </div>
+      <div>
+       <label class="block mb-2 font-semibold" for="shadowIntensity">
+        Intensidade da Sombra (0 a 100)
+       </label>
+       <input class="w-full rounded-lg border border-gray-600 px-3 py-2 text-gray-900 font-semibold" id="shadowIntensity" max="100" min="0" type="number" value="50"/>
+      </div>
+     </form>
+     <button class="mt-6 bg-pink-600 hover:bg-pink-700 transition-colors rounded-full px-6 py-3 font-semibold text-white" id="applyDesignBtn" type="button">
+      Aplicar Design
+     </button>
+    </div>
+   </section>
+  </main>
+  <footer class="bg-gradient-to-r from-pink-700 via-purple-700 to-indigo-700 text-gray-100 py-8 mt-16 text-center select-none">
+   © 2024 FideProta - Painel Admin
+  </footer>
+  <script>
+   (() => {
+    const PASSWORD = "2990298739@";
+    const loginSection = document.getElementById("loginSection");
+    const adminPanel = document.getElementById("adminPanel");
+    const loginBtn = document.getElementById("loginBtn");
+    const passwordInput = document.getElementById("passwordInput");
+    const errorMsg = document.getElementById("errorMsg");
+    const logoutBtn = document.getElementById("logoutBtn");
+
+    // Elements for colors
+    const colorPrimaryInput = document.getElementById("colorPrimary");
+    const colorSecondaryInput = document.getElementById("colorSecondary");
+    const colorBackgroundInput = document.getElementById("colorBackground");
+    const applyColorsBtn = document.getElementById("applyColorsBtn");
+
+    // Elements for buttons
+    const btnPrimaryText = document.getElementById("btnPrimaryText");
+    const btnPrimaryLink = document.getElementById("btnPrimaryLink");
+    const btnSecondaryText = document.getElementById("btnSecondaryText");
+    const btnSecondaryLink = document.getElementById("btnSecondaryLink");
+    const applyButtonsBtn = document.getElementById("applyButtonsBtn");
+
+    // Categories
+    const categoriesList = document.getElementById("categoriesList");
+    const newCategoryInput = document.getElementById("newCategoryInput");
+    const addCategoryBtn = document.getElementById("addCategoryBtn");
+
+    // Design
+    const fontSelect = document.getElementById("fontSelect");
+    const borderRadiusInput = document.getElementById("borderRadius");
+    const shadowIntensityInput = document.getElementById("shadowIntensity");
+    const applyDesignBtn = document.getElementById("applyDesignBtn");
+
+    // Store data keys
+    const STORAGE_KEYS = {
+      loggedIn: "fideprota_admin_loggedIn",
+      colors: "fideprota_admin_colors",
+      buttons: "fideprota_admin_buttons",
+      categories: "fideprota_admin_categories",
+      design: "fideprota_admin_design"
+    };
+
+    // Check login state on load
+    function checkLogin() {
+      if (localStorage.getItem(STORAGE_KEYS.loggedIn) === "true") {
+        loginSection.classList.add("hidden");
+        adminPanel.classList.remove("hidden");
+        logoutBtn.classList.remove("hidden");
+        loadSettings();
+      } else {
+        loginSection.classList.remove("hidden");
+        adminPanel.classList.add("hidden");
+        logoutBtn.classList.add("hidden");
+      }
+    }
+
+    // Login handler
+    loginBtn.addEventListener("click", () => {
+      const val = passwordInput.value.trim();
+      if (val === PASSWORD) {
+        localStorage.setItem(STORAGE_KEYS.loggedIn, "true");
+        errorMsg.classList.add("hidden");
+        passwordInput.value = "";
+        checkLogin();
+      } else {
+        errorMsg.classList.remove("hidden");
+      }
+    });
+
+    // Logout handler
+    logoutBtn.addEventListener("click", () => {
+      localStorage.removeItem(STORAGE_KEYS.loggedIn);
+      checkLogin();
+    });
+
+    // Apply colors
+    applyColorsBtn.addEventListener("click", () => {
+      const colors = {
+        primary: colorPrimaryInput.value,
+        secondary: colorSecondaryInput.value,
+        background: colorBackgroundInput.value
+      };
+      localStorage.setItem(STORAGE_KEYS.colors, JSON.stringify(colors));
+      applyColors(colors);
+      alert("Cores aplicadas e salvas!");
+    });
+
+    // Apply buttons
+    applyButtonsBtn.addEventListener("click", () => {
+      const buttons = {
+        primaryText: btnPrimaryText.value.trim() || "Otimização PC",
+        primaryLink: btnPrimaryLink.value.trim() || "optimization.html",
+        secondaryText: btnSecondaryText.value.trim() || "Papéis de Parede",
+        secondaryLink: btnSecondaryLink.value.trim() || "wallpapers.html"
+      };
+      localStorage.setItem(STORAGE_KEYS.buttons, JSON.stringify(buttons));
+      alert("Configurações dos botões salvas!");
+    });
+
+    // Categories management
+    function renderCategories() {
+      categoriesList.innerHTML = "";
+      const categories = JSON.parse(localStorage.getItem(STORAGE_KEYS.categories)) || [
+        "Otimização PC",
+        "Papéis de Parede",
+        "Contato"
+      ];
+      categories.forEach((cat, idx) => {
+        const div = document.createElement("div");
+        div.className = "flex items-center justify-between bg-gray-700 rounded-lg px-4 py-2";
+        const span = document.createElement("span");
+        span.textContent = cat;
+        span.className = "font-semibold text-indigo-300";
+        const btn = document.createElement("button");
+        btn.className = "text-red-500 hover:text-red-600 font-bold";
+        btn.textContent = "Remover";
+        btn.addEventListener("click", () => {
+          categories.splice(idx, 1);
+          localStorage.setItem(STORAGE_KEYS.categories, JSON.stringify(categories));
+          renderCategories();
+        });
+        div.appendChild(span);
+        div.appendChild(btn);
+        categoriesList.appendChild(div);
+      });
+    }
+
+    addCategoryBtn.addEventListener("click", () => {
+      const newCat = newCategoryInput.value.trim();
+      if (!newCat) return;
+      let categories = JSON.parse(localStorage.getItem(STORAGE_KEYS.categories)) || [
+        "Otimização PC",
+        "Papéis de Parede",
+        "Contato"
+      ];
+      if (categories.includes(newCat)) {
+        alert("Categoria já existe.");
+        return;
+      }
+      categories.push(newCat);
+      localStorage.setItem(STORAGE_KEYS.categories, JSON.stringify(categories));
+      newCategoryInput.value = "";
+      renderCategories();
+      alert("Categoria adicionada!");
+    });
+
+    // Apply design
+    applyDesignBtn.addEventListener("click", () => {
+      const design = {
+        font: fontSelect.value,
+        borderRadius: borderRadiusInput.value,
+        shadowIntensity: shadowIntensityInput.value
+      };
+      localStorage.setItem(STORAGE_KEYS.design, JSON.stringify(design));
+      applyDesign(design);
+      alert("Configurações de design aplicadas e salvas!");
+    });
+
+    // Apply colors to page
+    function applyColors(colors) {
+      document.documentElement.style.setProperty("--color-primary", colors.primary);
+      document.documentElement.style.setProperty("--color-secondary", colors.secondary);
+      document.documentElement.style.setProperty("--color-background", colors.background);
+      // Update header and footer gradient dynamically
+      const header = document.querySelector("header");
+      const footer = document.querySelector("footer");
+      if (header && footer) {
+        header.style.background = `linear-gradient(90deg, ${colors.primary} 0%, ${colors.secondary} 50%, ${colors.primary} 100%)`;
+        footer.style.background = `linear-gradient(90deg, ${colors.primary} 0%, ${colors.secondary} 50%, ${colors.primary} 100%)`;
+      }
+      // Update body background
+      document.body.style.backgroundColor = colors.background;
+    }
+
+    // Apply design to page
+    function applyDesign(design) {
+      document.body.style.fontFamily = design.font;
+      // Update border radius for all rounded-3xl and rounded-full elements
+      const borderRadiusPx = design.borderRadius + "px";
+      document.querySelectorAll(".rounded-3xl").forEach(el => {
+        el.style.borderRadius = borderRadiusPx;
+      });
+      document.querySelectorAll(".rounded-full").forEach(el => {
+        el.style.borderRadius = borderRadiusPx;
+      });
+      // Update shadow intensity for shadow-lg and shadow-2xl elements
+      const intensity = parseInt(design.shadowIntensity, 10);
+      const shadowColor = `rgba(219, 39, 119, ${intensity / 100})`; // pink shadow with variable opacity
+      document.querySelectorAll(".shadow-lg").forEach(el => {
+        el.style.boxShadow = `0 10px 15px -3px ${shadowColor}, 0 4px 6px -4px ${shadowColor}`;
+      });
+      document.querySelectorAll(".shadow-2xl").forEach(el => {
+        el.style.boxShadow = `0 25px 50px -12px ${shadowColor}`;
+      });
+    }
+
+    // Load saved settings
+    function loadSettings() {
+      // Colors
+      const colors = JSON.parse(localStorage.getItem(STORAGE_KEYS.colors));
+      if (colors) {
+        colorPrimaryInput.value = colors.primary;
+        colorSecondaryInput.value = colors.secondary;
+        colorBackgroundInput.value = colors.background;
+        applyColors(colors);
+      }
+      // Buttons
+      const buttons = JSON.parse(localStorage.getItem(STORAGE_KEYS.buttons));
+      if (buttons) {
+        btnPrimaryText.value = buttons.primaryText;
+        btnPrimaryLink.value = buttons.primaryLink;
+        btnSecondaryText.value = buttons.secondaryText;
+        btnSecondaryLink.value = buttons.secondaryLink;
+      }
+      // Categories
+      renderCategories();
+      // Design
+      const design = JSON.parse(localStorage.getItem(STORAGE_KEYS.design));
+      if (design) {
+        fontSelect.value = design.font;
+        borderRadiusInput.value = design.borderRadius;
+        shadowIntensityInput.value = design.shadowIntensity;
+        applyDesign(design);
+      }
+    }
+
+    // Initialize
+    checkLogin();
+   })();
+  </script>
+ </body>
+</html>
